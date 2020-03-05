@@ -20,7 +20,15 @@ export class SolicitationService {
   getSolicitations(): Observable<Solicitation[]> {
     return this.httpClient.get<Solicitation[]>(this.url)
       .pipe(
-        retry(2),
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+
+  getSolicitationById(id: number): Observable<Solicitation> {
+    return this.httpClient.get<Solicitation>(`${this.url}/${id}`)
+      .pipe(
+        retry(1),
         catchError(this.handleError)
       )
   }
@@ -28,7 +36,15 @@ export class SolicitationService {
   saveSolicitation(solicitation: Solicitation): Observable<Solicitation> {
     return this.httpClient.post<Solicitation>(this.url, JSON.stringify(solicitation), this.httpOptions)
       .pipe(
-        retry(2),
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+
+  updateSolicitation(solicitation: Solicitation): Observable<Solicitation> {
+    return this.httpClient.put<Solicitation>(`${this.url}/${solicitation.id}`, JSON.stringify(solicitation), this.httpOptions)
+      .pipe(
+        retry(1),
         catchError(this.handleError)
       )
   }

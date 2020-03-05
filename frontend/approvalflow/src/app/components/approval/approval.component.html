@@ -1,0 +1,32 @@
+<div class="container card">
+  <form id="add-form" (ngSubmit)="f.form.valid && saveApproval(f)" #f="ngForm" novalidate>
+    <h2>Informações da solicitação:</h2>
+    <div class="form-group">
+      <label for="name">Nome</label>
+      <input type="text" [(ngModel)]="approval.name" id="name" name="name" #name="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" disabled>
+    </div>
+    <div class="form-group">
+      <label for="description">Descrição</label>
+      <textarea type="text" [(ngModel)]="approval.description" id="description" name="description" #description="ngModel" required class="form-control" rows="3" [ngClass]="{ 'is-invalid': f.submitted && description.invalid }" disabled></textarea>
+    </div>
+    <div class="form-group">
+      <label for="price">Preço</label>
+      <input type="number" [(ngModel)]="approval.price" id="price" name="price" #price="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && price.invalid }" disabled>
+    </div>
+
+    <div class="container card">
+      <div class="form-group">
+        <label for="observation">Observation</label>
+        <textarea type="text" [(ngModel)]="approval.observation" id="observation" name="observation" #observation="ngModel" required class="form-control" rows="3" [ngClass]="{ 'is-invalid': f.submitted && observation.invalid }" placeholder="Digite uma observação"></textarea>
+        <div *ngIf="f.submitted && observation.invalid" class="invalid-feedback">
+          <div *ngIf="name.errors.required">Observação é obrigatório</div>
+        </div>
+      </div>
+
+      <div class="options">
+        <button type="submit" class="btn btn-primary submitSolicitation">Aceitar</button>
+        <button type="reject" class="btn btn-danger rejectSolicitation" (click)="rejectSolicitation(f)">Rejeitar</button>
+      </div>
+    </div>
+  </form>
+</div>

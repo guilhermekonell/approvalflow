@@ -5,15 +5,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { SolicitationComponent } from './solicitation/solicitation.component';
-import { LoginComponent } from './login/login.component';
+
+import { SolicitationComponent } from './components/solicitation/solicitation.component';
+import { LoginComponent } from './components/login/login.component';
+import { ApprovalComponent } from './components/approval/approval.component';
+
+import { SolicitationService } from './services/solicitation.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     SolicitationComponent,
-    LoginComponent
+    LoginComponent,
+    ApprovalComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +26,7 @@ import { LoginComponent } from './login/login.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [SolicitationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

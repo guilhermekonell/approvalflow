@@ -1,0 +1,17 @@
+.container {
+  max-width: 550px;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  margin-top: 10px;
+}
+
+a:last-child {
+  margin-bottom: 10px;
+}
