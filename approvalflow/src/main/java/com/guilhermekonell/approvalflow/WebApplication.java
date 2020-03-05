@@ -1,4 +1,4 @@
-package com.guilhermekonell.approvalflow.web;
+package com.guilhermekonell.approvalflow;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
