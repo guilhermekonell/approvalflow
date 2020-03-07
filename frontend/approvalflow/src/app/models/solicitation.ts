@@ -3,4 +3,6 @@ export interface Solicitation {
   name: string;
   description: string;
   price: number;
+  status: boolean;
+  observation: string;
 }

@@ -7,3 +7,7 @@
   justify-content: flex-end;
   align-items: center;
 }
+
+.cancelApproval {
+  margin-left: 10px;
+}

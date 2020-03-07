@@ -25,7 +25,7 @@ export class SolicitationService {
       )
   }
 
-  getSolicitationById(id: number): Observable<Solicitation> {
+  getSolicitationById(id: String): Observable<Solicitation> {
     return this.httpClient.get<Solicitation>(`${this.url}/${id}`)
       .pipe(
         retry(1),

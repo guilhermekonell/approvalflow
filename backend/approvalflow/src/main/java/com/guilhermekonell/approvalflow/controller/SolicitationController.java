@@ -29,6 +29,7 @@ public class SolicitationController {
 	
 	@GetMapping("{id}")
 	public Solicitation getSolicitation(@PathVariable Long id) {
+		System.out.println(id);
 		return repository.findById(id).orElseThrow(SolicitationNotFoundException::new);
 	}
 	
