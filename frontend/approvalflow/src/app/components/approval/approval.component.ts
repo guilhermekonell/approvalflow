@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Solicitation } from 'src/app/models/solicitation';
 import { SolicitationService } from 'src/app/services/solicitation.service';
 import { NgForm } from '@angular/forms';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-approval',
@@ -11,6 +11,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class ApprovalComponent implements OnInit {
 
+  situation: String;
   solicitation = {} as Solicitation;
 
   constructor(
@@ -23,10 +24,11 @@ export class ApprovalComponent implements OnInit {
     this.getSolicitation();
   }
 
-  saveApproval(form: NgForm) {
-    this.solicitation.status = true;
+  saveApproval() {
+    console.log('oi')
+    this.solicitation.status = this.situation === 'accept' ? true : false;
     this.solicitationService.saveSolicitation(this.solicitation).subscribe(() => {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/approvalList']);
     });
   }
 
@@ -35,7 +37,7 @@ export class ApprovalComponent implements OnInit {
     this.solicitationService.getSolicitationById(id).subscribe(solicitation => this.solicitation = solicitation);
   }
 
-  rejectApproval(form: NgForm) {
-
+  changeOption(situation: String) {
+    this.situation = situation;
   }
 }

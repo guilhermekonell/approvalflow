@@ -17,12 +17,12 @@
     </div>
     <div class="form-group">
       <label for="price">Preço</label>
-      <input type="number" [(ngModel)]="solicitation.price" id="price" name="price" #price="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && price.invalid }" placeholder="Digite o preço">
+      <input type="text" currencyMask [(ngModel)]="solicitation.price" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left' }" id="price" name="price" #price="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && price.invalid }" placeholder="Digite o preço">
       <div *ngIf="f.submitted && price.invalid" class="invalid-feedback">
         <div *ngIf="price.errors.required">Preço é obrigatório</div>
       </div>
     </div>
     <button type="submit" class="btn btn-primary submitSolicitation">Realizar Solicitação</button>
-    <button type="reset" class="btn btn-secondary cancelSolicitation" (click)="cleanForm(f)">Cancelar</button>
+    <a routerLink="/"><button type="cancel" class="btn btn-danger cancelSolicitation" (click)="cleanForm(f)">Cancelar</button></a>
   </form>
 </div>

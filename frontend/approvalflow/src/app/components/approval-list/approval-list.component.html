@@ -1,0 +1,33 @@
+<div class="container">
+  <a routerLink="/"><button type="cancel" class="btn btn-primary return">Voltar</button></a>
+  <div class="filter">
+    <h3>Filtros:</h3>
+    <button type="button" class="btn btn-secondary filter-option" (click)="getSolicitations()">Todos</button>
+    <button type="button" class="btn btn-secondary filter-option" (click)="getSolicitationsApproved()">Aprovados</button>
+    <button type="button" class="btn btn-secondary filter-option" (click)="getSolicitationsRejected()">Rejeitados</button>
+    <input type="text" class="form-control filter-option" [(ngModel)]="nameFilter" (ngModelChange)="getSolicitationsByName()" placeholder="Nome">
+    <input type="text" class="form-control filter-option" [(ngModel)]="descriptionFilter" (ngModelChange)="getSolicitationsByDescription()" placeholder="Descrição">
+  </div>
+  <div class="card">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Preço</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let solicitation of solicitations">
+          <td>{{solicitation.id}}</td>
+          <td>{{solicitation.name}}</td>
+          <td>{{solicitation.price | currency:'BRL'}}</td>
+          <td>
+            <a routerLink="/approval/{{solicitation.id}}"><button type="button" class="btn btn-primary">Avaliar</button></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

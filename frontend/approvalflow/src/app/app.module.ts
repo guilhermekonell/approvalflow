@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import ptBr from '@angular/common/locales/pt';
+import { NgxCurrencyModule } from "ngx-currency";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,22 +14,32 @@ import { LoginComponent } from './components/login/login.component';
 import { ApprovalComponent } from './components/approval/approval.component';
 
 import { SolicitationService } from './services/solicitation.service';
+import { ApprovalListComponent } from './components/approval-list/approval-list.component';
 
+registerLocaleData(ptBr);
 
 @NgModule({
   declarations: [
     AppComponent,
     SolicitationComponent,
     LoginComponent,
-    ApprovalComponent
+    ApprovalComponent,
+    ApprovalListComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    NgxCurrencyModule
   ],
-  providers: [SolicitationService],
+  providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: 'pt-BR'
+    },
+    SolicitationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

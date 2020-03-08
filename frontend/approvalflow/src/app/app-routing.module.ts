@@ -1,3 +1,4 @@
+import { ApprovalListComponent } from './components/approval-list/approval-list.component';
 import { LoginComponent } from './components/login/login.component';
 import { SolicitationComponent } from './components/solicitation/solicitation.component';
 import { NgModule } from '@angular/core';
@@ -11,7 +12,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'solicitation', component: SolicitationComponent },
   { path: 'approval/:id', component: ApprovalComponent },
-
+  { path: 'approvalList', component: ApprovalListComponent },
 ];
 
 @NgModule({

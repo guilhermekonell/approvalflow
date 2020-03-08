@@ -27,6 +27,26 @@ public class SolicitationController {
 		return repository.findAll();
 	}
 	
+	@GetMapping("/filter/approved")
+	public Iterable<Solicitation> getSolicitationsApproved() {
+		return repository.findAllSolicitationsApproved();
+	}
+	
+	@GetMapping("/filter/rejected")
+	public Iterable<Solicitation> getSolicitationsRejected() {
+		return repository.findAllSolicitationsRejected();
+	}
+	
+	@GetMapping("/filterName/{name}")
+	public Iterable<Solicitation> getSolicitationsByName(@PathVariable String name) {
+		return repository.findAllSolicitationsByName(name);
+	}
+	
+	@GetMapping("/filterDescription/{description}")
+	public Iterable<Solicitation> getSolicitationsByDescription(@PathVariable String description) {
+		return repository.findAllSolicitationsByDescription(description);
+	}
+	
 	@GetMapping("{id}")
 	public Solicitation getSolicitation(@PathVariable Long id) {
 		System.out.println(id);

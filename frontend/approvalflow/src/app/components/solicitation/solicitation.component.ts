@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SolicitationService } from 'src/app/services/solicitation.service';
 import { Solicitation } from 'src/app/models/solicitation';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-solicitation',
@@ -12,7 +13,10 @@ export class SolicitationComponent implements OnInit {
 
   solicitation = {} as Solicitation;
 
-  constructor(private solicitationService: SolicitationService) { }
+  constructor(
+    private solicitationService: SolicitationService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
@@ -20,6 +24,7 @@ export class SolicitationComponent implements OnInit {
   saveSolicitation(form: NgForm) {
     this.solicitationService.saveSolicitation(this.solicitation).subscribe(() => {
       this.cleanForm(form);
+      this.router.navigate(['/']);
     });
   }
 
@@ -27,5 +32,4 @@ export class SolicitationComponent implements OnInit {
     form.resetForm();
     this.solicitation = {} as Solicitation;
   }
-
 }

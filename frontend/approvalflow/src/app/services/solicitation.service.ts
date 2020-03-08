@@ -25,6 +25,38 @@ export class SolicitationService {
       )
   }
 
+  getSolicitationsApproved(): Observable<Solicitation[]> {
+    return this.httpClient.get<Solicitation[]>(`${this.url}/filter/approved`)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+
+  getSolicitationsRejected(): Observable<Solicitation[]> {
+    return this.httpClient.get<Solicitation[]>(`${this.url}/filter/rejected`)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+
+  getSolicitationsByName(name: String): Observable<Solicitation[]> {
+    return this.httpClient.get<Solicitation[]>(`${this.url}/filterName/${name}`)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+
+  getSolicitationsByDescription(description: String): Observable<Solicitation[]> {
+    return this.httpClient.get<Solicitation[]>(`${this.url}/filterDescription/${description}`)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+
   getSolicitationById(id: String): Observable<Solicitation> {
     return this.httpClient.get<Solicitation>(`${this.url}/${id}`)
       .pipe(
